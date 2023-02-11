@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install
+        run: yarn --frozen-lockfile
+
+      - name: Test
+        run: yarn test
+
+      - name: Publish
+        run: yarn publish --access public --new-version ${{ github.ref_name }}
+        env: 
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
