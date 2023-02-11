@@ -22,7 +22,7 @@ Create a fetch hook by passing your fetch function into `createQuery`:
 import { createQuery } from '@bitmetro/create-query';
 
 const useFetchCustomer = createQuery(
-  async (id: string): Customer => {
+  async (id: string): Promise<Customer> => {
     const res = await fetch('...');
     return await res.json();
   }
