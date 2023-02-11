@@ -23,6 +23,11 @@ jobs:
       - name: Test
         run: yarn test
 
+      - name: Identify to git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
       - name: Publish
         run: yarn publish --access public --new-version ${{ github.ref_name }}
         env: 
