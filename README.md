@@ -43,7 +43,13 @@ const MyComponent = ({ customerId }) => {
     request(customerId);
   }, [customerId]);
 
-  return <>...</>
+  return (
+    <div>
+      {status === 'success' && (
+        <p>Hello {customer?.name}</p>
+      )}
+    </div>
+  )
 }
 ```
 
