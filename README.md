@@ -34,9 +34,9 @@ Get the request function, fetch status and return value:
 const MyComponent = ({ customerId }) => {
   const {
     request,  // (id: string) => Promise<Customer>
-    status, // 'fetching' | 'success' | 'error' | undefined
-    value, // Customer | null
-    error // any
+    status,   // 'fetching' | 'success' | 'error' | undefined
+    value,    // Customer | null
+    error     // any
   } = useFetchCustomer();
 
   useEffect(() => {
