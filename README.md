@@ -21,12 +21,12 @@ Create a fetch hook by passing your fetch function into `createQuery`:
 ```ts
 import { createQuery } from '@bitmetro/create-query';
 
-const useFetchCustomer = createQuery(
-  async (id: string): Promise<Customer> => {
-    const res = await fetch('...');
-    return await res.json();
-  }
-);
+const getCustomer = async (id: string): Promise<Customer> => {
+  const res = await fetch('...');
+  return await res.json();
+};
+
+export const useFetchCustomer = createQuery(getCustomer);
 ```
 
 Get the request function, fetch status and return value:
