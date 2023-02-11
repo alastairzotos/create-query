@@ -36,7 +36,7 @@ const MyComponent = ({ customerId }) => {
     request,  // (id: string) => Promise<Customer>
     status,   // 'fetching' | 'success' | 'error' | undefined
     value,    // Customer | null
-    error     // any
+    error     // any | undefined
   } = useFetchCustomer();
 
   useEffect(() => {
