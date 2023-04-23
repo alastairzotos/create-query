@@ -10,6 +10,7 @@ export interface QueryValues<T extends Promise<any>> {
 
 export interface QueryActions<A extends any[]> {
   request: (...args: A) => Promise<void>;
+  clear: () => void;
 }
 
 export type QueryState<T extends Promise<any>, A extends any[]> = QueryValues<T> & QueryActions<A>;
@@ -32,4 +33,6 @@ export const createQuery = <F extends (...args: any[]) => Promise<any>>(
         set({ status: "error", error: e });
       }
     },
+
+    clear: () => set({ status: undefined, value: undefined, error: undefined, }),
   }));
