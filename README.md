@@ -36,11 +36,16 @@ const MyComponent = ({ customerId }) => {
     request,  // (id: string) => Promise<Customer>
     status,   // 'fetching' | 'success' | 'error' | undefined
     value,    // Customer | null
-    error     // any | undefined
+    error,    // any | undefined
+    clear,    // () => void
   } = useFetchCustomer();
 
   useEffect(() => {
+    // Fetch a new customer when the ID changes
     request(customerId);
+
+    // Or clear the state when the customer ID changes
+    clear();
   }, [customerId]);
 
   return (
