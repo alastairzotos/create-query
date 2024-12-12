@@ -8,12 +8,13 @@ export interface QueryValues<T extends Promise<any>> {
   value: Awaited<T> | null;
 }
 
-export interface QueryActions<A extends any[]> {
+export interface QueryActions<A extends any[], T> {
   request: (...args: A) => Promise<void>;
   clear: () => void;
+  mutate: (value: T) => void;
 }
 
-export type QueryState<T extends Promise<any>, A extends any[]> = QueryValues<T> & QueryActions<A>;
+export type QueryState<T extends Promise<any>, A extends any[]> = QueryValues<T> & QueryActions<A, Awaited<T>>;
 
 export const createQuery = <F extends (...args: any[]) => Promise<any>>(
   request: F,
@@ -35,4 +36,6 @@ export const createQuery = <F extends (...args: any[]) => Promise<any>>(
     },
 
     clear: () => set({ status: undefined, value: undefined, error: undefined, }),
+
+    mutate: (value) => set({ value }),
   }));

@@ -12,7 +12,7 @@ describe("createQuery", () => {
     beforeAll(async () => {
       const useSlice = createQuery(requestMock);
 
-      await useSlice.getState().request("foo");
+      await useSlice.getState().request("foo")
 
       responseStatus = useSlice.getState().status;
       response = useSlice.getState().value;
